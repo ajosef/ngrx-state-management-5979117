@@ -1,0 +1,25 @@
+<div>
+  @for(data of currentConditions() | keyvalue; track data.key){
+    @let zip = data.key;
+    @let conditions = data.value;
+    <div class="well flex" routerLink="forecast/{{zip}}">
+      <div>
+        <h3>{{conditions.name}} ({{zip}})</h3>
+        <h4>Current conditions: {{conditions.weather[0].main}}</h4>
+        <h4>Temperatures today:</h4>
+        <p>
+          Current {{conditions.main.temp | number:'.0-0'}}
+          - Max {{conditions.main.temp_max | number:'.0-0'}}
+          - Min {{conditions.main.temp_min | number:'.0-0'}}
+        </p>
+        <p>
+          <a >Show 5-day forecast for {{conditions.name}}</a>
+        </p>
+      </div>
+      <div>
+        <span class="close" (click)="removeZip(zip)" >&times;</span>
+        <img [src]="weatherService.getWeatherIcon(conditions.weather[0].id)">
+      </div>
+    </div>
+  }
+</div>
