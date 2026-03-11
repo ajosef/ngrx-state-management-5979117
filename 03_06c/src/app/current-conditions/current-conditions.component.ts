@@ -6,7 +6,8 @@ import {WeatherService} from '../weather.service';
 import {CurrentConditionsState} from '../reducers/current-conditions.reducer';
 import {ZipCodeActions} from '../actions/zip-code.actions';
 import {selectCurrentConditions} from '../reducers';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import { ForecastActions } from '../actions/forecast.actions';
 
 @Component({
   selector: 'app-current-conditions',
@@ -14,12 +15,13 @@ import {RouterLink} from '@angular/router';
   imports: [
     DecimalPipe,
     KeyValuePipe,
-    RouterLink
+    //RouterLink
   ],
   styleUrls: ['./current-conditions.component.css']
 })
 export class CurrentConditionsComponent {
 
+  private router = inject(Router);
   private store = inject(Store);
   currentConditions = this.store.selectSignal<CurrentConditionsState>(selectCurrentConditions);
 
@@ -27,6 +29,11 @@ export class CurrentConditionsComponent {
 
   removeZip(zipcode: string) {
     this.store.dispatch(ZipCodeActions.removeZipCode({zipcode}));
+  }
+
+  onForecastClick(zip: string) {
+    this.store.dispatch(ForecastActions.loadForecast({ zipcode: zip }));
+    this.router.navigate([`forecast/${zip}`]);
   }
 
 

@@ -13,18 +13,21 @@ import {
   CurrentConditionsState
 } from './current-conditions.reducer';
 import {routerReducer, RouterReducerState} from '@ngrx/router-store';
+import { forecastsFeatureKey, ForecastState, forecastReducer  } from './forecast.reducer';
 
 export interface State {
   [zipCodesFeatureKey]: ZipCodeState;
   [currentConditionsFeatureKey]: CurrentConditionsState;
-  router: RouterReducerState
+  router: RouterReducerState;
+  [forecastsFeatureKey]: ForecastState;
 
 }
 
 export const reducers: ActionReducerMap<State> = {
  [zipCodesFeatureKey]: zipCodeReducer,
   [currentConditionsFeatureKey]: currentConditionsReducer,
-  router: routerReducer
+  router: routerReducer,
+  [forecastsFeatureKey]:forecastReducer,
 };
 
 
