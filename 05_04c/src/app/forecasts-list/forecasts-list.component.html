@@ -5,7 +5,7 @@
 
     </div>
     <ul class="list-group">
-      @for(dailyForecast of forecast().list; track dailyForecast) {
+      @for(dailyForecast of forecast().list; track dailyForecast.dt) {
         <li class="list-group-item">
           {{ (dailyForecast.dt * 1000) | date:'EEEE, MMM d'}}:
           {{dailyForecast.weather[0].main}}

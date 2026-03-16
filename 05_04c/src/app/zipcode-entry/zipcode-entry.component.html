@@ -1,7 +1,7 @@
 <div class="well">
   <h2>Select a country:</h2>
 
-  <select #countrySel class="form-control">
+  <select #countrySel class="form-control" [ngModel]="selCountryCode()">
     @for(country of countries(); track country.code) {
       <option [value]="country.code">
         {{country.name}}

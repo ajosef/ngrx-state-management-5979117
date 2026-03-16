@@ -7,10 +7,19 @@ import {Country} from './app.types';
 })
 export class CountryService {
 
+  readonly COUNTRIES_INDEX:{[key: string]: string } = {};
+
   getCountries(): Observable<Country[]> {
     return of(ALL_COUNTRIES)
   }
+
+  constructor() {
+    for (const ctry of ALL_COUNTRIES) {
+      this.COUNTRIES_INDEX[ctry.code] = ctry.name;
+    }
+  }
 }
+
 
 const ALL_COUNTRIES: Country[] =   [
   {name: 'Afghanistan', code: 'AF'},

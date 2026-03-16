@@ -1,11 +1,7 @@
 import {Component, inject, input, output} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {zipCodesFeatureKey} from '../reducers/zip-codes.reducer';
-import {AsyncPipe, DecimalPipe, KeyValuePipe} from '@angular/common';
+import { DecimalPipe, KeyValuePipe} from '@angular/common';
 import {WeatherService} from '../weather.service';
 import {CurrentConditionsState} from '../reducers/current-conditions.reducer';
-import {ZipCodeActions} from '../actions/zip-code.actions';
-import {selectCurrentConditions} from '../reducers';
 import {RouterLink} from '@angular/router';
 
 @Component({
@@ -21,6 +17,8 @@ import {RouterLink} from '@angular/router';
 export class CurrentConditionsComponent {
 
   currentConditions = input.required<CurrentConditionsState>();
+
+  clickedZip = output<string>();
 
   zipRemoved = output<string>();
 
