@@ -1,0 +1,19 @@
+<div class="well">
+  <h2>Select a country:</h2>
+
+  <select #countrySel class="form-control">
+    @for(country of countries(); track country.code) {
+      <option [value]="country.code">
+        {{country.name}}
+      </option>
+    }
+  </select>
+
+  <h2>Enter a zipcode:</h2>
+
+  <input type="text" #zipcode placeholder="Zipcode" class="form-control">
+  <br>
+  <button class="btn btn-primary" (click)="addLocation(zipcode.value, countrySel.value)" >
+    Add location
+  </button>
+</div>
